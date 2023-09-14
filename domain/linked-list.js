@@ -49,7 +49,15 @@ export default class LinkedList {
         }
     }
 
-    search(data) {}
+    search(data) {
+        let current = this.#head;
+        while(!!current) {
+            if (current.data === data) {
+                return current;
+            }
+        }
+        return null;s
+    }
 
     printLinkedList() {
         let current = this.#head;
