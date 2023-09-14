@@ -19,18 +19,18 @@ export default class BinaryTree {
         let parent = this.#root;
         while(parent) {
             if (newNode.data < parent.data) {
-                if (parent.leftChild === null) {
-                    parent.leftChild = newNode;
+                if (parent.left === null) {
+                    parent.left = newNode;
                     break;
                 } else {
-                    parent = parent.leftChild;
+                    parent = parent.left;
                 }
             } else {
-                if (parent.rightChild === null) {
-                    parent.rightChild = newNode;
+                if (parent.right === null) {
+                    parent.right = newNode;
                     break;
                 } else {
-                    parent = parent.rightChild;
+                    parent = parent.right;
                 }
             }
         }
@@ -46,11 +46,11 @@ export default class BinaryTree {
         while(current.data !== data) {
             if (data < current.data) {
                 parent = current;
-                current = current.leftChild;
+                current = current.left;
                 isLeft = true;
             } else if (data > current.data) {
                 parent = current;
-                current = current.rightChild;
+                current = current.right;
                 isLeft = false;
             }
             if (current === null) {
@@ -58,58 +58,58 @@ export default class BinaryTree {
             }
         }
 
-        if (current.leftChild === null && current.rightChild === null) {
+        if (current.left === null && current.right === null) {
             if (current === parent) {
                 this.#root = null;
             } else if(isLeft) {
-                parent.leftChild === null;
+                parent.left === null;
             } else {
-                parent.rightChild === null;
+                parent.right === null;
             }
             return true;
         }
 
-        if (current.leftChild === null) {
+        if (current.left === null) {
             if (current === parent) {
-                this.#root = current.rightChild;
+                this.#root = current.right;
             } else if (isLeft) {
-                parent.leftChild = current.rightChild;
+                parent.left = current.right;
             } else {
-                parent.rightChild = current.rightChild;
+                parent.right = current.right;
             }
             return true;
         }
 
-        if (current.rightChild === null) {
+        if (current.right === null) {
             if (current === parent) {
-                this.#root = current.leftChild;
+                this.#root = current.left;
             } else if (isLeft) {
-                parent.leftChild = current.leftChild;
+                parent.left = current.left;
             } else {
-                parent.rightChild = current.leftChild;
+                parent.right = current.left;
             }
             return true;
         }
 
         isLeft = false;
-        let minRight = current.rightChild;
-        while(minRight.leftChild !== null) {
+        let minRight = current.right;
+        while(minRight.left !== null) {
             parent = minRight;
-            minRight = minRight.leftChild;
+            minRight = minRight.left;
             isLeft = true;
         }
         current.data = minRight.data;
         if (isLeft) {
-            if(minRight.rightChild !== null) {
-                parent.leftChild = minRight.rightChild;
+            if(minRight.right !== null) {
+                parent.left = minRight.right;
             } else {
-                parent.leftChild = null;
+                parent.left = null;
             }
         } else {
-            if(minRight.rightChild !== null) {
-                parent.rightChild = minRight.rightChild
+            if(minRight.right !== null) {
+                parent.right = minRight.right
             } else {
-                parent.rightChild = null;
+                parent.right = null;
             }  
         }
         
@@ -120,9 +120,9 @@ export default class BinaryTree {
         let current = this.#root;
         while(current !== null) {
             if (data < current.data) {
-                current = current.leftChild;
+                current = current.left;
             } else if (data > current.data) {
-                current = current.rightChild;
+                current = current.right;
             } else {
                 break;
             }
@@ -137,14 +137,14 @@ export default class BinaryTree {
         while (true) {
             while (!!current) {
                 callStack.push(current);
-                current = current.leftChild;
+                current = current.left;
             }
             if (callStack.peek() === undefined) {
                 break;
             }
             let lastCurrent = callStack.pop();
             result.push(lastCurrent.data);
-            current = lastCurrent.rightChild;
+            current = lastCurrent.right;
         }
         return result;
     }
@@ -157,13 +157,13 @@ export default class BinaryTree {
             while (!!current) {
                 result.push(current.data);
                 callStack.push(current);
-                current = current.leftChild;
+                current = current.left;
             }
             if (callStack.peek() === undefined) {
                 break;
             }
             let lastCurrent = callStack.pop();
-            current = lastCurrent.rightChild;
+            current = lastCurrent.right;
         }
         return result;
     }
@@ -175,14 +175,14 @@ export default class BinaryTree {
         while (true) {
             while (!!current) {
                 callStack.push(current);
-                current = current.rightChild;
+                current = current.right;
             }
             if (callStack.peek() === undefined) {
                 break;
             }
             let lastCurrent = callStack.pop();
             result.push(lastCurrent.data);
-            current = lastCurrent.leftChild;
+            current = lastCurrent.left;
         }
         return result;
     }

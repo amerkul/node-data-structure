@@ -1,12 +1,12 @@
 export default class Node {
     #data;
-    #leftChild;
-    #rightChild;
+    #left;
+    #right;
 
     constructor(data) {
         this.#data = data;
-        this.#leftChild = null;
-        this.#rightChild = null;
+        this.#left = null;
+        this.#right = null;
     }
 
     get data() {
@@ -17,24 +17,24 @@ export default class Node {
         this.#data = data;
     }
 
-    get leftChild() {
-        return this.#leftChild;
+    get left() {
+        return this.#left;
     }
 
-    set leftChild(left) {
-        this.#leftChild = left;
+    set left(left) {
+        this.#left = left;
     }
     
-    get rightChild() {
-        return this.#rightChild;
+    get right() {
+        return this.#right;
     }
 
-    set rightChild(right) {
-        this.#rightChild = right;
+    set right(right) {
+        this.#right = right;
     }
 
     toString() {
-        return `data: ${this.#data}; leftChild: ${this.#leftChild}; rightChild: ${this.#rightChild}`
+        return `data: ${this.#data}; leftChild: ${this.#left}; rightChild: ${this.#right}`
     }
 
 }

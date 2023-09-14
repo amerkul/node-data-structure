@@ -1,5 +1,6 @@
 import BinaryTree from "./domain/tree.js";
 import Graph from "./domain/graph.js";
+import LinkedList from "./domain/linked-list.js";
 
 const binaryTree = new BinaryTree();
 
@@ -35,3 +36,25 @@ graph.addEdge(1, 4);
 
 console.log(graph.dfs(0));
 console.log(graph.bfs(0));
+
+let linkedList = new LinkedList();
+
+linkedList.insert(1);
+linkedList.insert(2);
+linkedList.insert(3);
+
+linkedList.printLinkedList();
+
+linkedList.delete(1);
+
+linkedList.printLinkedList();
+
+linkedList.insert(4);
+linkedList.delete(4);
+
+linkedList.printLinkedList();
+
+linkedList.insert(4);
+linkedList.delete(3);
+
+linkedList.printLinkedList();
