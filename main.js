@@ -1,4 +1,5 @@
 import BinaryTree from "./domain/tree.js";
+import Graph from "./domain/graph.js";
 
 const binaryTree = new BinaryTree();
 
@@ -16,3 +17,21 @@ console.log(binaryTree.find(10));
 console.log(binaryTree.inOrder(binaryTree.root));
 console.log(binaryTree.preOrder(binaryTree.root));
 console.log(binaryTree.postOrder(binaryTree.root));
+
+let graph = new Graph();
+
+graph.addVertex(0);
+graph.addVertex(1);
+graph.addVertex(2);
+graph.addVertex(3);
+graph.addVertex(4);
+
+
+graph.addEdge(1, 0);
+graph.addEdge(0, 2);
+graph.addEdge(2, 1);
+graph.addEdge(0, 3);
+graph.addEdge(1, 4);
+
+console.log(graph.dfs(0));
+console.log(graph.bfs(0));
