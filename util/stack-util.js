@@ -8,6 +8,10 @@ export default class StackUtil {
 
     constructor() {}
 
+    /**
+     * Adding data into the stacks.
+     * @param {Number} data 
+     */
     push(data) {
         this.#stack.push(data);
         if (this.#minStack.peek() === undefined 
@@ -20,7 +24,7 @@ export default class StackUtil {
         || data > this.#maxStack.peek()) {
             this.#maxStack.push(data);
         } else {
-            this.#maxStack.push(this.#minStack.peek());
+            this.#maxStack.push(this.#maxStack.peek());
         }
     }
 

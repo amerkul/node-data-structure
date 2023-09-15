@@ -1,6 +1,8 @@
 import BinaryTree from "./domain/tree.js";
 import Graph from "./domain/graph.js";
 import LinkedList from "./domain/linked-list.js";
+import StackUtil from "./util/stack-util.js";
+import TreeUtil from "./util/tree-util.js";
 
 const binaryTree = new BinaryTree();
 
@@ -26,13 +28,20 @@ graph.addVertex(1);
 graph.addVertex(2);
 graph.addVertex(3);
 graph.addVertex(4);
-
+graph.addVertex(5);
+graph.addVertex(6);
 
 graph.addEdge(1, 0);
 graph.addEdge(0, 2);
 graph.addEdge(2, 1);
 graph.addEdge(0, 3);
 graph.addEdge(1, 4);
+graph.addEdge(0, 5);
+graph.addEdge(6, 5);
+graph.addEdge(6, 4);
+
+
+console.log(graph.shortestPath(0, 4));
 
 console.log(graph.dfs(0));
 console.log(graph.bfs(0));
@@ -58,3 +67,18 @@ linkedList.insert(4);
 linkedList.delete(3);
 
 linkedList.printLinkedList();
+
+console.log(linkedList.isCyclical());
+
+let stackUtil = new StackUtil();
+
+stackUtil.push(3);
+stackUtil.push(10);
+stackUtil.push(10);
+stackUtil.pop();
+
+console.log(stackUtil.getMin());
+console.log(stackUtil.getMax());
+
+
+console.log(TreeUtil.isBST(binaryTree));

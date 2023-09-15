@@ -1,8 +1,13 @@
-import Node from "./node.js";
+import {ListNode} from "./node.js";
+
+/**
+ * A linked list is a linear data structure, in which the elements are not stored 
+ * at contiguous memory locations. The elements in a linked list are linked 
+ * using pointers.
+ */
 export default class LinkedList {
 
     #head = null;
-    #tail = null;
     #count = 0;
 
     constructor() {}
@@ -11,60 +16,97 @@ export default class LinkedList {
         return this.#count;
     }
 
+    /**
+     * Inserting a new node. Time complexity is O(n);
+     * @param {Number} data 
+     * @returns ListNode
+     */
     insert(data) {
         this.#count++;
-        let newNode = new Node(data);
-        if (this.#tail) {
-           this.#tail.right = newNode;
-           newNode.left = this.#tail;
-           this.#tail = newNode;
-           return newNode;
+        let newNode = new ListNode(data);
+        if (this.#head === null) {
+            this.#head = newNode;
+            this.#head.next = null;
+            return newNode;
         }
-        this.#head = this.#tail = newNode;
+        let current = this.#head;
+        let parent = null;
+        while (!!current) {
+            parent = current;
+            current = current.next;
+        }
+        parent.next = newNode;
         return newNode;
     }
 
+    /**
+     * Deleting a list node. Time complexity is O(n).
+     * @param {Number} data 
+     */
     delete(data) {
         let current = this.#head;
+        let parent = null;
         while (current !== null) {
             if (current.data === data) {
-                if (current.left === null) {
-                    this.#head = current.right;
-                    this.#head.left = null;
-                } else if (current.right === null) {
-                    this.#tail = current.left;
-                    this.#tail.right = null;
+                if (current.next === null || this.#head === current) {
+                    this.#head = current.next;
+                } else if (current.next === null) {
+                    parent.next = null;
                 } else {
-                    let beforeCurrent = current.left;
-                    let afterCurrent = current.right;
-                    beforeCurrent.right = afterCurrent;
-                    current.left = null;
-                    afterCurrent.left = beforeCurrent;
-                    current.right = null;
+                    parent.next = current.next;
+                    current.next = null;
                 }
                 this.#count--;
                 break;
             }
-            current = current.right;
+            parent = current;
+            current = current.next;
         }
     }
 
+    /**
+     * Searching for a node. Time complexity is O(n).
+     * @param {*} data 
+     * @returns 
+     */
     search(data) {
         let current = this.#head;
         while(!!current) {
             if (current.data === data) {
                 return current;
             }
+            current = current.next;
         }
-        return null;s
+        return null;
     }
 
     printLinkedList() {
         let current = this.#head;
         while(!!current) {
             console.log(current.data);
-            current = current.right;
+            current = current.next;
         }
+    }
+
+    /**
+     * Detecting if a linked list has a cycle. Used Floyd's Cycle Detection 
+     * Algorithm (Tortoise and Hare algorithm) to solve this problem efficiently.
+     * @returns boolean
+     */
+    isCyclical() {
+        let fastPointer = this.#head;
+        let slowPointer = this.#head;
+
+        while (fastPointer !== null 
+            && slowPointer !== null 
+            && fastPointer.next !== null) {
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+            if (fastPointer === slowPointer) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

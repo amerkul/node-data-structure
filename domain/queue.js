@@ -1,3 +1,6 @@
+/**
+ * FIFO.
+ */
 export default class Queue {
     #items = [];
 

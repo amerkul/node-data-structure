@@ -1,6 +1,11 @@
 import Node from "./node.js";
 import Stack from "./stack.js";
 
+/**
+ * Binary Tree is defined as a tree data structure where each node has 
+ * at most 2 children. The left child is slower than a parent, and otherwise,
+ * the right child is greater than the parent. 
+ */
 export default class BinaryTree {
     #root = null;
 
@@ -10,6 +15,11 @@ export default class BinaryTree {
         return this.#root;
     }
 
+    /**
+     * Inserting a new Node. Time complexity is O(h) where
+     * h is a height of the tree.
+     * @param {Number} data 
+     */
     insert(data) {
         const newNode = new Node(data);
         if (this.#root === null) {
@@ -36,6 +46,11 @@ export default class BinaryTree {
         }
     }
 
+    /**
+     * Inserting a new Node. Time complexity is O(h) where
+     * h is a height of the tree.
+     * @param {Number} data 
+     */
     remove(data) {
         if (this.#root === null) {
             return false;
@@ -116,6 +131,11 @@ export default class BinaryTree {
         return true;
     }
 
+    /**
+     * Find a tree node. Time complexity is O(h)
+     * @param {Number} data 
+     * @returns Node
+     */
     find(data) {
         let current = this.#root;
         while(current !== null) {
@@ -130,6 +150,11 @@ export default class BinaryTree {
         return current;
     }
 
+    /**
+     * Time complexity is O(n).
+     * @param {Number} node 
+     * @returns Array
+     */
     inOrder(node) {
         let callStack = new Stack();
         let current = node;
@@ -149,6 +174,11 @@ export default class BinaryTree {
         return result;
     }
 
+    /**
+     * Time complexity is O(n).
+     * @param {Number} node 
+     * @returns Array
+     */
     preOrder(node) {
         let callStack = new Stack();
         let current = node;
@@ -168,6 +198,11 @@ export default class BinaryTree {
         return result;
     }
 
+    /**
+     * Time complexity is O(n).
+     * @param {Number} node 
+     * @returns Array
+     */
     postOrder(node) {
         let callStack = new Stack();
         let current = node;

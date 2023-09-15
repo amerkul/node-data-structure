@@ -1,3 +1,6 @@
+/**
+ * LIFO.
+ */
 export default class Stack {
     #items = [];
 
